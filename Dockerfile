@@ -56,9 +56,6 @@ RUN /tmp/install-system-deps.sh
 COPY dockerfiles/splash/install-fonts.sh /tmp/install-fonts.sh
 RUN /tmp/install-fonts.sh
 
-COPY dockerfiles/splash/install-flash.sh /tmp/install-flash.sh
-RUN /tmp/install-flash.sh
-
 COPY dockerfiles/splash/install-qtwebengine-deps.sh /tmp/install-qtwebengine-deps.sh
 RUN /tmp/install-qtwebengine-deps.sh
 
@@ -103,19 +100,6 @@ FROM qtbuilder as qtwebkitbuilder-base
 COPY dockerfiles/splash/install-qtwebkit-build-deps.sh /tmp/install-qtwebkit-build-deps.sh
 COPY dockerfiles/splash/create-package.sh /tmp/create-package.sh
 RUN /tmp/install-qtwebkit-build-deps.sh
-
-# =====================
-
-#FROM qtbuilder as qtwebkitbuilder
-#COPY --from=qtwebkit-downloader /tmp/qtwebkit.tar.xz /tmp/
-#
-#COPY dockerfiles/splash/install-qtwebkit-build-deps.sh /tmp/install-qtwebkit-build-deps.sh
-#RUN /tmp/install-qtwebkit-build-deps.sh
-#
-#COPY dockerfiles/splash/build-qtwebkit.sh /tmp/build-qtwebkit.sh
-#RUN /tmp/build-qtwebkit.sh /tmp/qtwebkit.tar.xz
-
-# =====================
 
 FROM qtbase as splash-base
 
